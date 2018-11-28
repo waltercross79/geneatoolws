@@ -23,7 +23,7 @@ public class RecordDTO {
     public static RegistryRecord convert(RecordDTO recordDto) {
     	RegistryRecord result = new RegistryRecord(recordDto.recordDate, 
     			recordDto.folio, recordDto.houseNumber, recordDto.street, recordDto.city, 
-    			recordDto.country, RecordType.values()[recordDto.recordType], recordDto.registryBook, 
+    			recordDto.country, RecordType.fromInt(recordDto.recordType), recordDto.registryBook, 
     			new ArrayList<PersonInRecord>(), null, recordDto.id);
     	    	
     	recordDto.peopleInRecord.forEach(pir -> result.people.add(PersonInRecordDTO.convert(pir)));    	

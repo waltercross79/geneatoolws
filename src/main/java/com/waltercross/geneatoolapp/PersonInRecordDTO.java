@@ -13,7 +13,7 @@ public class PersonInRecordDTO {
 	}
 	
 	public static PersonInRecord convert(PersonInRecordDTO dto) {
-		return new PersonInRecord(PersonDTO.convert(dto.person), PersonRole.values()[dto.personType], null);		
+		return new PersonInRecord(PersonDTO.convert(dto.person), PersonRole.fromInt(dto.personType), null);		
 	}
 	
 	public static PersonInRecordDTO convert(PersonInRecord personInRecord) {

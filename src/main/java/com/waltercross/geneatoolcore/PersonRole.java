@@ -9,4 +9,27 @@ public enum PersonRole {
 
     private final int value;
     public int value() { return value; }
+    
+    public static PersonRole fromInt(int i) {
+        switch (i) {
+            case 1:
+                return PersonRole.Mother;
+            case 2:
+                return PersonRole.Father;
+            case 3:
+                return PersonRole.Newborn;
+            case 4:
+                return PersonRole.Deceased;
+            case 5:
+                return PersonRole.Witness;
+            case 6:
+                return PersonRole.Godparent;
+            case 7:
+                return PersonRole.Bride;
+            case 8:
+                return PersonRole.Groom;
+            default:
+                throw new RuntimeException("Unknown person role.");
+        }
+    }
 }

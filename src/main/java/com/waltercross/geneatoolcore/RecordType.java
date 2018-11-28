@@ -19,4 +19,17 @@ public enum RecordType {
 
     private final int value;
     public int value() { return value; }
+
+    public static RecordType fromInt(int i) {
+        switch (i) {
+            case 1:
+                return RecordType.Birth;
+            case 2:
+                return RecordType.Death;
+            case 3:
+                return RecordType.Marriage;
+            default:
+                throw new RuntimeException("Unknown record type.");
+        }
+    }
 }
