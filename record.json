@@ -1,0 +1,36 @@
+{
+    "recordDate": "1979-10-26",
+    "folio": "232",
+    "street": "",
+    "houseNumber": "1",
+    "city": "HB City",
+    "country": "",
+    "registryBook": "Matrika 1",
+    "recordType": "1",
+    "peopleInRecord": [
+        {
+            "person": {
+                "id": "1",
+                "firstName": "Lada",
+                "lastName": "Kriz"
+            },
+            "personType": "3"
+        },
+        {
+            "person": {
+                "id": "31",
+                "firstName": "Ladislav",
+                "lastName": "Kriz"
+            },
+            "personType": "2"
+        },
+        {
+            "person": {
+                "id": "2",
+                "firstName": "Zdenka",
+                "lastName": "Krizova"
+            },
+            "personType": "1"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+spring.data.mongodb:
+  database: records # Database name.
+  uri: mongodb://mongoserver:27017 # Mongo database URI. Cannot be set with host, port and credentials.
+
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-headers: '*' # Comma-separated list of headers to allow in a request. '*' allows all headers.
+        allowed-methods: GET,POST,PUT,DELETE,PATCH # Comma-separated list of methods to allow. '*' allows all methods. When not set, defaults to GET.
+        allowed-origins: http://localhost:4200/ # Comma-separated list of origins to allow. '*' allows all origins. When not set, CORS support is disabled.
+        exposed-headers: '*' # Comma-separated list of headers to include in a response.
+
+spring.jackson.serialization:
+  write-dates-as-timestamps: false

@@ -7,9 +7,13 @@ import java.util.List;
 import com.waltercross.geneatoolcore.PersonInRecord;
 import com.waltercross.geneatoolcore.RecordType;
 import com.waltercross.geneatoolcore.RegistryRecord;
+import com.waltercross.geneatoolcore.CustomDateSerializer;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class RecordDTO {
 	public String id;
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Date recordDate;
 	public String folio;
 	public String street;
@@ -24,7 +28,7 @@ public class RecordDTO {
     	RegistryRecord result = new RegistryRecord(recordDto.recordDate, 
     			recordDto.folio, recordDto.houseNumber, recordDto.street, recordDto.city, 
     			recordDto.country, RecordType.fromInt(recordDto.recordType), recordDto.registryBook, 
-    			new ArrayList<PersonInRecord>(), null, recordDto.id);
+    			new ArrayList<PersonInRecord>(), recordDto.id);
     	    	
     	recordDto.peopleInRecord.forEach(pir -> result.people.add(PersonInRecordDTO.convert(pir)));    	
     	

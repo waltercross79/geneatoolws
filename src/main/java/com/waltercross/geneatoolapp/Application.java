@@ -11,11 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.waltercross.geneatoolcore.RegistryRecordRepository;
-import com.waltercross.geneatoolcore.Person;
-import com.waltercross.geneatoolcore.PersonRepository;
-import com.waltercross.geneatoolcore.PersonSimpleRecord;
 import com.waltercross.geneatoolcore.RegistryRecord;
+import com.waltercross.geneatoolcore.RegistryRecordRepository;
 
 @SpringBootApplication
 @EnableMongoRepositories(basePackageClasses=RegistryRecord.class)
@@ -23,9 +20,7 @@ public class Application {
 //public class Application implements CommandLineRunner {
 	
 	@Autowired
-	private RegistryRecordRepository registryRecordRepo;
-	@Autowired
-	private PersonRepository personRepo;
+	private RegistryRecordRepository registryRecordRepo;	
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
