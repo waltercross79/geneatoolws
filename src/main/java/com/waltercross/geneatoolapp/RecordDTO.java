@@ -22,7 +22,7 @@ public class RecordDTO {
 	public String country;
 	public String registryBook;
 	public int recordType;
-    public List<PersonInRecordDTO> peopleInRecord;
+	public List<PersonInRecordDTO> peopleInRecord;
     
     public static RegistryRecord convert(RecordDTO recordDto) {
     	RegistryRecord result = new RegistryRecord(recordDto.recordDate, 

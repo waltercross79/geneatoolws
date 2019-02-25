@@ -14,6 +14,7 @@ public class RegistryRecord {
     public String registryBook;
     public RecordType recordType;
     public List<PersonInRecord> people;
+    public String fileName;
 
     /**
      * Default constructor for reflection and MongoDB repository.
@@ -31,14 +32,15 @@ public class RegistryRecord {
      * @param country
      * @param recordType
      * @param registryBook
+     * @param fileName
      */
     public RegistryRecord(Date recordDate, String folio, String houseNumber,
                           String streetName, String city, String country,
                           RecordType recordType, String registryBook,
-                          List<PersonInRecord> people) {
+                          List<PersonInRecord> people, String fileName) {
 
         this(recordDate, folio, houseNumber, streetName, city,
-                country, recordType, registryBook, people, null);
+                country, recordType, registryBook, people, null, fileName);
     }
 
     /**
@@ -51,12 +53,13 @@ public class RegistryRecord {
      * @param recordType
      * @param registryBook
      * @param id
+     * @param fileName
      */
     public RegistryRecord(Date recordDate, String folio, String houseNumber,
                           String streetName, String city, String country,
                           RecordType recordType, String registryBook,
                           List<PersonInRecord> people,
-                          String id) {
+                          String id, String fileName) {
 
         this.recordDate = recordDate;
         this.folio = folio;
@@ -65,5 +68,6 @@ public class RegistryRecord {
         this.recordType = recordType;
         this.registryBook = registryBook;
         this.people = people;
+        this.fileName = fileName;
     }
 }

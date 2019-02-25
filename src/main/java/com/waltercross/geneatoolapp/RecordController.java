@@ -28,58 +28,58 @@ public class RecordController {
 	
 	// Aggregate root.
 	
-		@GetMapping("/records")
-		List<RecordDTO> all() {
-			
-			List<RecordDTO> result = new ArrayList<RecordDTO>();			
-			repository.findAll().forEach(r -> result.add(RecordDTO.convert(r)));
-			
-			return result;
-		}
+	@GetMapping("/records")
+	List<RecordDTO> all() {
 		
-		@PostMapping("/records")
-		RecordDTO newRegistryRecord(@RequestBody RecordDTO newRegistryRecord) {
-			RegistryRecord r = repository.save(RecordDTO.convert(newRegistryRecord));
-			return RecordDTO.convert(r);
-		}
+		List<RecordDTO> result = new ArrayList<RecordDTO>();			
+		repository.findAll().forEach(r -> result.add(RecordDTO.convert(r)));
 		
-		// Single item.
-		@GetMapping("/records/{id}")
-		RecordDTO one(@PathVariable String id) {
-			RegistryRecord r = repository.findById(id)
-					.orElseThrow(() -> new RegistryRecordNotFoundException(id));
-			
-			return RecordDTO.convert(r);
-		}
+		return result;
+	}
+	
+	@PostMapping("/records")
+	RecordDTO newRegistryRecord(@RequestBody RecordDTO newRegistryRecord) {
+		RegistryRecord r = repository.save(RecordDTO.convert(newRegistryRecord));
+		return RecordDTO.convert(r);
+	}
+	
+	// Single item.
+	@GetMapping("/records/{id}")
+	RecordDTO one(@PathVariable String id) {
+		RegistryRecord r = repository.findById(id)
+				.orElseThrow(() -> new RegistryRecordNotFoundException(id));
 		
-		@PutMapping("/records/{id}")
-		RecordDTO replaceRegistryRecord(@RequestBody RecordDTO newRegistryRecord, @PathVariable String id) {
-			RegistryRecord newRecord = RecordDTO.convert(newRegistryRecord);
-			return repository.findById(id)
-					.map(record -> {
-						
-						record.folio = newRecord.folio;
-						record.recordDate = newRecord.recordDate;
-						record.recordType = newRecord.recordType;
-						record.registryBook = newRecord.registryBook;
-						record.location = newRecord.location;
-						record.people = newRecord.people;
-						
-						RegistryRecord r = repository.save(record);
-						
-						return RecordDTO.convert(r);
-					})
-					.orElseGet(() -> {
-						newRecord.id = id;
-						
-						RegistryRecord r = repository.save(newRecord);
-						
-						return RecordDTO.convert(r);
-					});
-		}
-		
-		@DeleteMapping("records/{id}")
-		void deleteRegistryRecord(@PathVariable String id) {
-			repository.deleteById(id);
-		}
+		return RecordDTO.convert(r);
+	}
+	
+	@PutMapping("/records/{id}")
+	RecordDTO replaceRegistryRecord(@RequestBody RecordDTO newRegistryRecord, @PathVariable String id) {
+		RegistryRecord newRecord = RecordDTO.convert(newRegistryRecord);
+		return repository.findById(id)
+				.map(record -> {
+					
+					record.folio = newRecord.folio;
+					record.recordDate = newRecord.recordDate;
+					record.recordType = newRecord.recordType;
+					record.registryBook = newRecord.registryBook;
+					record.location = newRecord.location;
+					record.people = newRecord.people;
+					
+					RegistryRecord r = repository.save(record);
+					
+					return RecordDTO.convert(r);
+				})
+				.orElseGet(() -> {
+					newRecord.id = id;
+					
+					RegistryRecord r = repository.save(newRecord);
+					
+					return RecordDTO.convert(r);
+				});
+	}
+	
+	@DeleteMapping("records/{id}")
+	void deleteRegistryRecord(@PathVariable String id) {
+		repository.deleteById(id);
+	}
 }

@@ -18,7 +18,7 @@ services:
     ports: 
       - 27017:27017
     volumes:
-      - data:/var/lib/mongo/data
+      - data:/data/db
     expose: 
       - 27017
 
