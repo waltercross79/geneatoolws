@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.waltercross.geneatoolcore.RegistryRecord;
 import com.waltercross.geneatoolcore.RegistryRecordRepository;
+import com.waltercross.geneatoolcore.RecordType;
+
+import com.waltercross.geneatoolmq.MarriagePublisher;
+import com.waltercross.geneatoolmq.PublisherBase;
+import com.waltercross.geneatoolmq.PersonPublisher;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
@@ -40,6 +45,9 @@ public class RecordController {
 	@PostMapping("/records")
 	RecordDTO newRegistryRecord(@RequestBody RecordDTO newRegistryRecord) {
 		RegistryRecord r = repository.save(RecordDTO.convert(newRegistryRecord));
+
+		publishChange(r);
+
 		return RecordDTO.convert(r);
 	}
 	
@@ -67,6 +75,8 @@ public class RecordController {
 					
 					RegistryRecord r = repository.save(record);
 					
+					publishChange(r);
+
 					return RecordDTO.convert(r);
 				})
 				.orElseGet(() -> {
@@ -74,6 +84,8 @@ public class RecordController {
 					
 					RegistryRecord r = repository.save(newRecord);
 					
+					publishChange(r);
+
 					return RecordDTO.convert(r);
 				});
 	}
@@ -81,5 +93,17 @@ public class RecordController {
 	@DeleteMapping("records/{id}")
 	void deleteRegistryRecord(@PathVariable String id) {
 		repository.deleteById(id);
+	}
+
+	private void publishChange(RegistryRecord record) {
+
+		PublisherBase publisher;
+		if(record.recordType == RecordType.Marriage) {
+			publisher = new MarriagePublisher();			
+		} else {
+			publisher = new PersonPublisher();
+		}
+
+		publisher.send(record);
 	}
 }

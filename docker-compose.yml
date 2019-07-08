@@ -12,6 +12,10 @@ services:
       - mongo-db
     links:
       - mongo-db:mongoserver
+    stdin_open: true
+    tty: true
+    volumes:
+      - data:/tmp
 
   mongo-db:
     image: mongo
